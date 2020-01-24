@@ -30,6 +30,7 @@ namespace api_customer_satisfaction
         }
 
         public IConfiguration Configuration { get; }
+        public readonly string soapRest = "_soapRest";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -37,6 +38,12 @@ namespace api_customer_satisfaction
             services.AddDbContext<Context>(opts => opts.UseSqlServer(Configuration["ConnectionString:CustomerSatisfaction"]));
             services.AddScoped<IEvaluationService, EvaluationService>();
             services.AddScoped<IDataRepository<Evaluation>, EvaluationManager>();
+            services.AddCors(
+                options => options.AddPolicy(
+                    soapRest, builder =>
+                    {
+                        builder.WithOrigins("https://localhost:44326/", "https://localhost:44326/EvaluationService.asmx");
+                    }));
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -44,7 +51,6 @@ namespace api_customer_satisfaction
             });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -66,6 +72,8 @@ namespace api_customer_satisfaction
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseCors(op => op.WithOrigins("https://localhost:44326/", "https://localhost:44326/EvaluationService.asmx").AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {

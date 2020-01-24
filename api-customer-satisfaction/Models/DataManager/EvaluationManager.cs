@@ -15,6 +15,7 @@ namespace api_customer_satisfaction.Models.DataManager
         }
         public void Add(Evaluation entity)
         {
+            entity.EvaluationDate = DateTime.Now;
             _context.Evaluations.Add(entity);
             _context.SaveChanges();
         }
@@ -35,8 +36,8 @@ namespace api_customer_satisfaction.Models.DataManager
             evaluation.FirstName = entity.FirstName;
             evaluation.LastName = entity.LastName;
             evaluation.Email = entity.Email;
-            evaluation.EvaluationDate = entity.EvaluationDate;
             evaluation.Qualification = entity.Qualification;
+            evaluation.EvaluationDate = DateTime.Now;
             _context.SaveChanges();
         }
     }

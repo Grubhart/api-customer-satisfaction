@@ -1,23 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using api_customer_satisfaction.Models;
+﻿using api_customer_satisfaction.Models;
 using api_customer_satisfaction.Models.Repository;
 using api_customer_satisfaction.ServiceSoap.DataContract;
 using api_customer_satisfaction.ServiceSoap.ServiceContract;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 
 namespace api_customer_satisfaction.Controllers
 {
+    [EnableCors]
     [Route("api/[controller]")]
     [ApiController]
     public class EvaluationController : ControllerBase
     {
         private readonly IDataRepository<Evaluation> _dataRepository;
-        private readonly IEvaluationService _evaluationService;
-
+        private readonly IEvaluationService _evaluationService;        
         public EvaluationController(IDataRepository<Evaluation> dataRepository, IEvaluationService evaluationService)
         {
             _dataRepository = dataRepository;
