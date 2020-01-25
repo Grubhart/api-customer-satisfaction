@@ -29,7 +29,7 @@ namespace api_customer_satisfaction.Models.DataManager
         }
         public IEnumerable<Evaluation> GetAllByDateRange(DateTime begin, DateTime end)
         {
-            return _context.Evaluations.Where(f => f.EvaluationDate > begin && f.EvaluationDate < end).ToList();
+            return _context.Evaluations.Where(f => f.EvaluationDate >= begin && f.EvaluationDate <= end).ToList();
         }
         public void Update(Evaluation evaluation, Evaluation entity)
         {

@@ -32,7 +32,6 @@ namespace api_customer_satisfaction
         public IConfiguration Configuration { get; }
         public readonly string soapRest = "_soapRest";
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<Context>(opts => opts.UseSqlServer(Configuration["ConnectionString:CustomerSatisfaction"]));
@@ -65,8 +64,6 @@ namespace api_customer_satisfaction
                 c.SwaggerEndpoint(url: "/swagger/v1/swagger.json", name: "api-customer-satisfaction");
             });
 
-            app.UseSoapEndpoint<IEvaluationService>("/EvaluationService.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
-
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -77,6 +74,7 @@ namespace api_customer_satisfaction
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.UseSoapEndpoint<IEvaluationService>("/EvaluationService.asmx", new BasicHttpBinding(), SoapSerializer.XmlSerializer);
                 endpoints.MapControllers();
             });
         }

@@ -10,16 +10,16 @@ namespace api_customer_satisfaction.ServiceSoap.DataContract
     public class EvaluationModel
     {
         [DataMember]
-        public int Id { get; set; }
+        public int id { get; set; }
         [DataMember]
-        public string Email { get; set; }
+        public string email { get; set; }
         [DataMember]
-        public string FirstName { get; set; }
+        public string firstName { get; set; }
         [DataMember]
-        public string LastName { get; set; }
+        public string lastName { get; set; }
         [DataMember]
-        public int Qualification { get; set; }
+        public int qualification { get; set; }
         [DataMember]
-        public DateTime EvaluationDate { get; set; }
+        public DateTime evaluationDate { get; set; }
     }
 }

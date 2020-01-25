@@ -25,12 +25,12 @@ namespace api_customer_satisfaction.ServiceSoap.ServiceContract
             {
                 evaluationModel = new EvaluationModel
                 {
-                    Id = evaluation.Id,
-                    Email = evaluation.Email,
-                    FirstName = evaluation.FirstName,
-                    LastName = evaluation.LastName,
-                    Qualification = evaluation.Qualification,
-                    EvaluationDate = evaluation.EvaluationDate
+                    id = evaluation.Id,
+                    email = evaluation.Email,
+                    firstName = evaluation.FirstName,
+                    lastName = evaluation.LastName,
+                    qualification = evaluation.Qualification,
+                    evaluationDate = evaluation.EvaluationDate
                 };
                 lstEvaluationModel.Add(evaluationModel);
             }
@@ -45,12 +45,12 @@ namespace api_customer_satisfaction.ServiceSoap.ServiceContract
         {
             return new EvaluationModel
             {
-                Id = evaluation.Id,
-                Email = evaluation.Email,
-                FirstName = evaluation.FirstName,
-                LastName = evaluation.LastName,
-                Qualification = evaluation.Qualification,
-                EvaluationDate = evaluation.EvaluationDate
+                id = evaluation.Id,
+                email = evaluation.Email,
+                firstName = evaluation.FirstName,
+                lastName = evaluation.LastName,
+                qualification = evaluation.Qualification,
+                evaluationDate = evaluation.EvaluationDate
             };
         }
     }
